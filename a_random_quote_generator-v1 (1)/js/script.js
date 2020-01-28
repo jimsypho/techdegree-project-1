@@ -12,7 +12,7 @@ project 1 - A Random Quote Generator
 ***/
 var quotes = [
   {
-    quote : "People don't buy until you move them emotionally.  Thing of all of the times people didn't buy into what you had to offer even though it was the logical thing to do.",
+    quote : "People don't buy until you move them emotionally.  Think of all of the times people didn't buy into what you had to offer even though it was the logical thing to do.",
     source : "Steve Brown",
     year: 2019
   },
@@ -40,13 +40,20 @@ var quotes = [
  * `getRandomQuote` function
 ***/
 
-
-
+function getRandomQuote (randomNum) {
+  var randomNum = Math.floor(Math.random() * quotes.length);
+  var randomQuote = quotes[randomNum];
+  console.log(randomQuote);
+}
+getRandomQuote();
 /***
  * `printQuote` function
 ***/
 
+function printQuote () {
+  
 
+}
 
 /***
  * click event listener for the print quote button
