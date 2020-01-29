@@ -8,7 +8,7 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array 
+  Quotes array of objects
 ***/
 var quotes = [
   {
@@ -31,13 +31,14 @@ var quotes = [
   },
   {
     quote : "Never doubt that a small group of thoughtful, committed citizens can change the world; indeed, it's the only thing that ever has.",
-    source : "Margaret Mead"
+    source : "Margaret Mead",
+    tags : 'motivation, leadership'
   }
 ]
 
 
 /***
- * `getRandomQuote` function
+ * Create getRandomQuote function that is based on the number of quote objects in the array
 ***/
 
 function getRandomQuote (randomNum) {
@@ -48,7 +49,7 @@ function getRandomQuote (randomNum) {
 }
 getRandomQuote();
 /***
- * `printQuote` function
+ * Create `printQuote` function that gets the random quote and concatenates it with other properties to for the HTML that needs to be printed to the document
 ***/
 
 function printQuote () {
@@ -56,16 +57,36 @@ function printQuote () {
   var html = '<p class="quote">' + newQuote.quote + '</p>';
   html += '<p class="source">' + newQuote.source;
   
-  if (quotes.citation !== undefined) {
+  if (newQuote.citation) {
     html += '<span class="citation">' + newQuote.citation + '</span>';
   }
-  if (quotes.year !== undefined) {
+  if (newQuote.year) {
     html += '<span class="year">' + newQuote.year + '</span>';
+  }
+  if (newQuote.tags) {
+    html += '<span class="citation">' + newQuote.tags + '</span>';
   }
   html += '</p>';
   document.getElementById('quote-box').innerHTML = html;
+  randomBackground();
 }
 
+/* Create a random background color function that gets called every time a new quote is printed to the document */
+
+function randomBackground (num1, num2, num3) {
+  num1 = Math.ceil(Math.random () * 255);
+  num2 = Math.ceil(Math.random () * 255);
+  num3 = Math.ceil(Math.random () * 255);
+  var bgColor = 'rgb' + '(' + num1 + ', ' + num2 + ', ' + num3 + ')';
+  document.body.style.backgroundColor = bgColor;
+}
+
+/* Create timing function */
+
+function backgroundTimer () {
+  setInterval(printQuote, 8000);
+}
+backgroundTimer();
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
